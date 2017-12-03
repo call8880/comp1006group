@@ -68,6 +68,10 @@ public abstract class Player {
 	public List<Thing> getThings() {
 		return things;
 	}
+	
+	public int getNumThings() {
+		return things.size();
+	}
 
 	/** Getter for a player's goal */
 	public Thing getGoal() {
