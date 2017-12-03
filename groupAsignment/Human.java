@@ -55,6 +55,17 @@ public class Human extends Player {
 			look();
 		} else if (action.trim().charAt(0) == 'g') {
 			switch (action.trim().charAt(action.trim().length() - 1)) {
+			case 'n':
+				if (verbose) {
+					System.err.print("human was in " + this.getLocation());
+				}
+				this.w.getRoom(this.getLocation()).removePlayer(this);
+				this.setLocation(this.getLocation().north());
+				this.w.getRoom(this.getLocation()).addPlayer(this);
+				if (verbose) {
+					System.err.print("human now in " + this.getLocation());
+				}
+				break;		
 			case 'e':
 				if (verbose) {
 					System.err.print("human was in " + this.getLocation());
@@ -72,6 +83,17 @@ public class Human extends Player {
 				}
 				this.w.getRoom(this.getLocation()).removePlayer(this);
 				this.setLocation(this.getLocation().west());
+				this.w.getRoom(this.getLocation()).addPlayer(this);
+				if (verbose) {
+					System.err.print("human now in " + this.getLocation());
+				}
+				break;
+			case 's':
+				if (verbose) {
+					System.err.print("human was in " + this.getLocation());
+				}
+				this.w.getRoom(this.getLocation()).removePlayer(this);
+				this.setLocation(this.getLocation().south());
 				this.w.getRoom(this.getLocation()).addPlayer(this);
 				if (verbose) {
 					System.err.print("human now in " + this.getLocation());
