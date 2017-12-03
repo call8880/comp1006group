@@ -55,7 +55,7 @@ public abstract class Player {
 	}
 
 	/** Getter for a player's location */
-	public Location getLocation() {
+	public static Location getLocation() {
 		return location;
 	}
 

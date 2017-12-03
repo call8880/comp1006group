@@ -8,7 +8,7 @@ import java.util.List;
  * This class should be abstract and team members should be creating concrete
  * subclasses.
  */
-public class Thing {
+public abstract class Thing {
 	protected String name;
 	protected Location location;
 	protected int value;
