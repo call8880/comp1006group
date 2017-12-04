@@ -18,18 +18,23 @@ public class MagicCard extends Thing{
             p.w.getRoom(this.getLocation()).removePlayer(p);
             p.setLocation( this.getLocation().east() );
             p.w.getRoom(this.getLocation()).addPlayer(p);
+            System.out.println("You seem to have moved because of the card!");
         }else if(r == 1){
             p.w.getRoom(this.getLocation()).removePlayer(p);
             p.setLocation( this.getLocation().west() );
             p.w.getRoom(this.getLocation()).addPlayer(p);
+            System.out.println("You seem to have moved because of the card!");
+
         }else if(r == 2){
             p.w.getRoom(this.getLocation()).removePlayer(p);
             p.setLocation( this.getLocation().south() );
             p.w.getRoom(this.getLocation()).addPlayer(p);
+            System.out.println("You seem to have moved because of the card!");
         }else if(r==3){
             p.w.getRoom(this.getLocation()).removePlayer(p);
             p.setLocation( this.getLocation().north() );
             p.w.getRoom(this.getLocation()).addPlayer(p);
+            System.out.println("You seem to have moved because of the card!");
         }else{
             System.out.println("Nothing seems to happen.");
         }
