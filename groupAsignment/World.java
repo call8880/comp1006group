@@ -1,52 +1,105 @@
-package groupAsignment;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
+public class World{
+  protected Room[][] rooms;
+  protected Location entrance;
+  protected Thing    goal;
+  
+  public World(){
+    Room r1 = new Room("the entrance", new Location(this,0,0), 
+                      new java.util.ArrayList<Location>(),
+                      new java.util.ArrayList<Player>(),
+                      new java.util.ArrayList<Thing>());
+    Room r2 = new Room("a dark room", new Location(this,0,1), 
+                      new java.util.ArrayList<Location>(),
+                      new java.util.ArrayList<Player>(),
+                      new java.util.ArrayList<Thing>());
+    r1.getAdjacentRooms().add(r2.getLocation());
+    r2.getAdjacentRooms().add(r1.getLocation());
+  
+    rooms = new Room[1][2];
+    rooms[0][0] = r1;
+    rooms[0][1] = r2;
+    entrance = r1.getLocation();
+    goal = new Thing("thing", r2.getLocation(), 1, 7);
+    r2.addThing(goal);
+  }
+  
+  public World(String worldFileName){
+    List<Player> playersList = new ArrayList<Player>();
+    playersList.add(0,new Pirate(this,"pirate", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new Thing("null",new Location(this, 0,0),0)));
+    List<Thing> thingList = new ArrayList<Thing>();
+    String fileName = worldFileName;
+    String line = null;
+    int x = 0;
+    int y = 0;
 
-public class World {
-	protected Room[][] rooms;
-	protected Location entrance;
-	protected Thing goal;
+    try{
+      FileReader file = new FileReader( worldFileName );
+      BufferedReader reader = new BufferedReader(file);
 
-	public World() {
-		Room r1 = new Room("the entrance", new Location(this, 0, 0), new java.util.ArrayList<Location>(),
-				new java.util.ArrayList<Player>(), new java.util.ArrayList<Thing>());
-		Room r2 = new Room("a dark room", new Location(this, 0, 1), new java.util.ArrayList<Location>(),
-				new java.util.ArrayList<Player>(), new java.util.ArrayList<Thing>());
-		r1.getAdjacentRooms().add(r2.getLocation());
-		r2.getAdjacentRooms().add(r1.getLocation());
+      line = reader.readLine();
+      rooms = new Room[2][3];
+      line = reader.readLine();
+      for(Room r[]: rooms) {
+        for(Room s: r) {
+          s = new Room(line, new Location(this,x,y),new java.util.ArrayList<Location>(),new java.util.ArrayList<Player>(), new java.util.ArrayList<Thing>());
+          line = reader.readLine();
+          String[] parts = line.split(",");
+          for(String pt: parts){
+           //accesible rooms
+          }
+          line = reader.readLine();
+          String[] parts2 = line.split(",");
+          for(int p = 0;p<4;p++){
+            if(Integer.parseInt(parts2[p]) == 1){
+              playersList.get(p).setLocation(new Location(this,x,y));
+              s.addPlayer(playersList.get(p));
+            }
+          }
+          line = reader.readLine();
+          String[] parts3 = line.split(",");
+          for(int p = 0;p<4;p++){
+            if(Integer.parseInt(parts3[p]) == 1){
+              thingList.get(p).setLocation(new Location(this,x,y));
+              s.addThing(thingList.get(p));
+            }
+          }
+          y++;
+        }
+        x++;
+      }
+      reader.close();
 
-		rooms = new Room[1][2];
-		rooms[0][0] = r1;
-		rooms[0][1] = r2;
-		entrance = r1.getLocation();
-		goal = new Thing("thing", r2.getLocation(), 1, 7);
-		r2.addThing(goal);
-	}
-
-	public World(String worldFileName) {
-		// create world described in file worldFileName
-	}
-
-	public Location getEntrance() {
-		return entrance;
-	}
-
-	public Thing getGoal() {
-		return goal;
-	}
-
-	/** returns room of specified Player */
-	public Room getRoom(Player p) {
-		int r = p.getLocation().getRow();
-		int c = p.getLocation().getCol();
-		return rooms[r][c];
-	}
-
-	/**
-	 * returns room of specified location
-	 * 
-	 * @return the room that this is at this location in this world. Returns null if
-	 *         there is no such room.
-	 */
-	public Room getRoom(Location location) {
-		return rooms[location.getRow()][location.getCol()];
-	}
+    }catch(java.io.FileNotFoundException e){
+      // might be thrown by FileReader constructor
+      System.err.println("File " + fileName + " was not found");
+    }catch(java.io.IOException e){
+      // might be thrown when reading data
+      System.err.println("IOException thrown : " + e);
+    }
+  }
+  
+  public Location getEntrance(){
+    return entrance;
+  }
+  
+  public Thing getGoal(){ return goal;}
+  
+  /** returns room of spcified Player */
+  public Room getRoom(Player p){
+    int r = p.getLocation().getRow();
+    int c = p.getLocation().getCol();
+    return rooms[r][c];
+  }
+  /** returns room of specified location 
+    * 
+    * @return the room that this is at this location in this world. 
+    *         Returns null if there is no such room.
+    */
+  public Room getRoom(Location location){
+    return rooms[location.getRow()][location.getCol()];
+  }
 }
