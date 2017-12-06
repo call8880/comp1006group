@@ -42,15 +42,16 @@ public class World{
     rooms[0][0] = r1;
     rooms[0][1] = r2;
     entrance = rooms[0][0].getLocation();
-    goal = new Thing("thing", r2.getLocation(), 1, 7);
+    goal = new GoldenIdol("thing", r2.getLocation(), 1);
     r2.addThing(goal);
   }
   
   public World(String worldFileName){
     List<Player> playersList = new ArrayList<Player>();
-    playersList.add(0,new Pirate(this,"pirate", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new Thing("null",new Location(this, 0,0),0)));
-    playersList.add(1,new Zombie(this,"zombie", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new Thing("null",new Location(this, 0,0),0)));
-    playersList.add(2,new FrenchKnight(this,"french knight", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new Thing("null",new Location(this, 0,0),0)));
+    playersList.add(0,new Pirate(this,"pirate", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new GoldenIdol("thing", new Location(this, 0, 0), 1)));
+    playersList.add(1,new Zombie(this,"zombie", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new GoldenIdol("thing", new Location(this, 0, 0), 1)));
+    playersList.add(2,new FrenchKnight(this,"french knight", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new GoldenIdol("thing", new Location(this, 0, 0), 1)));
+    playersList.add(3, new Thief(this, "Thieff", new Location(this, 0, 0), 100, new java.util.ArrayList<Thing>(), new GoldenIdol("Thing", new Location(this, 0, 0), 1)));
 
     List<Thing> thingList = new ArrayList<Thing>();
     thingList.add(0,new GoldenIdol("Golden Idol", new Location(this,0,0),0));
