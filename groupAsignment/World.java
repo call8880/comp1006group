@@ -41,7 +41,7 @@ public class World{
     rooms = new Room[1][2];
     rooms[0][0] = r1;
     rooms[0][1] = r2;
-    entrance = r1.getLocation();
+    entrance = rooms[0][0].getLocation();
     goal = new Thing("thing", r2.getLocation(), 1, 7);
     r2.addThing(goal);
   }
@@ -50,14 +50,17 @@ public class World{
     List<Player> playersList = new ArrayList<Player>();
     playersList.add(0,new Pirate(this,"pirate", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new Thing("null",new Location(this, 0,0),0)));
     playersList.add(1,new Zombie(this,"zombie", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new Thing("null",new Location(this, 0,0),0)));
+    playersList.add(2,new FrenchKnight(this,"french knight", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new Thing("null",new Location(this, 0,0),0)));
 
     List<Thing> thingList = new ArrayList<Thing>();
-    thingList.add(0,new MagicCard("Magic Card", new Location(this,0,0),0));
+    thingList.add(0,new GoldenIdol("Golden Idol", new Location(this,0,0),0));
+    thingList.add(1,new MagicCard("Magic Card", new Location(this,0,0),0));
+    thingList.add(2,new Cow("Cow", new Location(this,0,0),0));
+
     String fileName = worldFileName;
     String line = null;
     int x = 0;
     int y = 0;
-
     try{
       FileReader file = new FileReader( worldFileName );
       BufferedReader reader = new BufferedReader(file);
