@@ -2,11 +2,12 @@ package groupAsignment;
 import java.util.List;
 import java.util.Scanner;
 
+
 /** A human (user) players in the game */
 
 public class Human extends Player {
 
-	private static boolean verbose = true; // set true for debugging
+	private static boolean verbose = false; // set true for debugging
 	// set false for submitted code
 	private Location loc;
 
@@ -54,6 +55,15 @@ public class Human extends Player {
 			help();
 		} else if (action.trim().equals("l")) {
 			look();
+		} else if (action.trim().equals("i")) {
+			this.interact();
+		} else if (action.trim().equals("w")) {
+			System.out.println("Your items are: ");
+			String blah = "";
+			for(Thing t: this.getThings()){
+				blah += t.toString();
+			}
+			System.out.println(blah);
 		} else if (action.trim().charAt(0) == 'g') {
 			switch (action.trim().charAt(action.trim().length() - 1)) {
 			case 'n':
@@ -99,8 +109,6 @@ public class Human extends Player {
 				if (verbose) {
 					System.err.print("human now in " + this.getLocation());
 				}
-			case 'i':
-				interact();
 				break;
 			}
 
