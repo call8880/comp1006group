@@ -8,8 +8,7 @@ public class Cow extends Thing{
   
   @Override
   public void interact(){
-    int heal = 40;
-    String actionString = "You make yourself a nice burger. You heal " + heal + ".";
+    String actionString = "You make yourself a nice burger. You heal " + value + ".";
     System.out.println(actionString);
   }
 }
