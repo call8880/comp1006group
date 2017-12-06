@@ -37,7 +37,15 @@ public class Location {
 	public boolean isConnected(Location other) {
 		// using the information in the world check is this loication
 		// and other are connected.
-		return false;
+		Location[] connected = {this.north(), this.east(), this.south(), this.west()};
+		boolean foundConnected = false;
+		for (Location location : connected){
+			if (location.equals(other)){
+				foundConnected = true;
+				break;
+			}
+		}
+		return foundConnected;
 	}
 
 	/**
@@ -47,7 +55,12 @@ public class Location {
 	 * this in some way.
 	 */
 	public Location west() {
-		return new Location(world, row, col - 1);
+		try {
+			return new Location(world, row, col - 1);
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			return this;
+		}
 	}
 
 	/**
@@ -57,7 +70,12 @@ public class Location {
 	 * this in some way.
 	 */
 	public Location east() {
-		return new Location(world, row, col + 1);
+		try {
+			return new Location(world, row, col + 1);
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			return this;
+		}
 	}
 
 	/**
@@ -67,7 +85,12 @@ public class Location {
 	 * this in some way.
 	 */
 	public Location north() {
-		return new Location(world, row - 1, col);
+		try {
+			return new Location(world, row - 1, col);
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			return this;
+		}
 	}
 
 	/**
@@ -77,7 +100,12 @@ public class Location {
 	 * this in some way.
 	 */
 	public Location south() {
-		return new Location(world, row + 1, col);
+		try {
+			return new Location(world, row + 1, col);
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			return this;
+		}
 	}
 
 	@Override
