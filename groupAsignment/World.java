@@ -64,9 +64,9 @@ public class World{
 
       line = reader.readLine();
       rooms = new Room[2][3];
-      line = reader.readLine();
       for(Room r[]: rooms) {
         for(Room s: r) {
+          line = reader.readLine();
           s = new Room(line, new Location(this,x,y),new java.util.ArrayList<Location>(),new java.util.ArrayList<Player>(), new java.util.ArrayList<Thing>());
           line = reader.readLine();
           String[] parts = line.split(",");
