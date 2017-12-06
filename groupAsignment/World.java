@@ -1,3 +1,4 @@
+package groupAsignment;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class World{
     List<Player> playersList = new ArrayList<Player>();
     playersList.add(0,new Pirate(this,"pirate", new Location(this, 0,0), 100,new java.util.ArrayList<Thing>(),new Thing("null",new Location(this, 0,0),0)));
     List<Thing> thingList = new ArrayList<Thing>();
+    thingList.add(0,new MagicCard("Magic Card", new Location(this,0,0),0));
     String fileName = worldFileName;
     String line = null;
     int x = 0;
