@@ -3,7 +3,7 @@ package groupAsignment;
 import java.util.*;
 
 
-public class PlayerCallum extends Player {
+public class Thief extends Player {
 	
 	public String name;
 	private Location loc;
@@ -12,7 +12,7 @@ public class PlayerCallum extends Player {
 	private Random r = new Random();
 	private int whereMove = 0;
 
-	public PlayerCallum(World w, String name, Location location, int health, List<Thing> things, Thing goal) {
+	public Thief(World w, String name, Location location, int health, List<Thing> things, Thing goal) {
 		super(w, name, location, health, things, goal);
 		this.name = name;
 		this.loc = location;
