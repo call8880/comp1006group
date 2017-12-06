@@ -1,5 +1,4 @@
 package groupAsignment;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -98,6 +97,8 @@ public class Human extends Player {
 				if (verbose) {
 					System.err.print("human now in " + this.getLocation());
 				}
+			case 'i':
+				interact();
 				break;
 			}
 
@@ -116,7 +117,30 @@ public class Human extends Player {
 		s += "'l' to look around the room \n ";
 		s += "'g x' to go in direction x (x can be n,e,w,s) \n ";
 		s += "'w' to list what you have \n ";
+		s += "'i' to interact with a thing or player in this room. \n";
 		System.out.println(s);
 	}
+	public void interact(){
+		System.out.println("Would you like to interact with a (p)layer or (t)hing?");
+		Scanner in = new Scanner(System.in);
+		if(in.nextLine().equals("p")) {
+			System.out.println("Who would you like to interact with?");
+			System.out.println(w.getRoom(getLocation()).getPlayers().toString());
+			System.out.println("Enter integer value of player 0+ correspondingly");
+			interact(w.getRoom(getLocation()).getPlayers().get(in.nextInt()));
+		}else if(in.nextLine().equals("t")){
+			System.out.println("What thing would you like to interact with?");
+			System.out.println(w.getRoom(getLocation()).getThings().toString());
+			System.out.println("Enter integer value of thing 0+ correspondingly");
+			interact(w.getRoom(getLocation()).getThings().get(in.nextInt()));
+		}
+	}
 
+	public void interact(Player p){
+	  p.interact(this);
+    }
+
+    public void interact(Thing t){
+	  t.interact(this);
+    }
 }
