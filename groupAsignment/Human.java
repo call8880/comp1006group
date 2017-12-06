@@ -9,6 +9,7 @@ public class Human extends Player {
 
 	private static boolean verbose = true; // set true for debugging
 	// set false for submitted code
+	private Location loc;
 
 	/**
 	 * Creates a player in the game
@@ -30,6 +31,7 @@ public class Human extends Player {
 	 */
 	public Human(World w, String name, Location location, int health, List<Thing> things, Thing goal) {
 		super(w, name, location, health, things, goal);
+		this.loc = location;
 	}
 
 	/**
