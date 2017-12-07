@@ -1,8 +1,8 @@
-package groupAsignment;
+
 
 import java.util.List;
 
-public class Room extends World {
+public class Room {
 	protected String description;
 	protected Location location;
 	protected List<Location> adjacent;

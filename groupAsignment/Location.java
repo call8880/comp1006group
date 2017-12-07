@@ -1,4 +1,3 @@
-package groupAsignment;
 
 /** Represents a place in a world. */
 public class Location {

@@ -1,3 +1,4 @@
+
 import java.util.List;
 import java.util.Random;
 
@@ -29,23 +30,7 @@ public class Pirate extends Player{
     }
 
     @Override
-    public void play(){
-        int counter = 0;
-        int thisPirate;
-        List<Player> current = w.getRoom(location).getPlayers();
-        for(Player c:current){
-            if(c.equals(this)){
-                current.remove(counter);
-            }
-            counter++;
-        }
-        Random rand = new Random();
-        int  r = rand.nextInt(current.size());
-        if(current.size() >= 1 ){
-            interact(current.get(r));
-        }else{
-            interact();
-        }
+       public void play(){
+        interact();
     }
-
 }
